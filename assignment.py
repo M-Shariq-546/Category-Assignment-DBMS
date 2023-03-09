@@ -5,18 +5,17 @@ import sqlite3 as s3
 win = Tk()
 win.title("Category and Subcategory by M. Shariq Shafiq")
 
-category = Label(win, text = "Enter Category name : ")
-category.pack()
+category = str(input("Enter Category name : "))
 
-parent_id = Label(win, text = "Enter Parent id : ")
-parent_id.pack()
+parent_id = int(input("Enter Parent id : "))
 
 
-# create_table ='''create table categories (
-#                     id INTEGER PRIMARY KEY auto incremented,
-#                     c_name varchar,
-#                     parent_id INTEGER,
-#                     FOREIGN KEY (parent_id) REFERENCES categories(id) )'''
+
+create_table ='''create table categories (
+                    id INTEGER PRIMARY KEY auto incremented,
+                    c_name varchar,
+                    parent_id INTEGER,
+                    FOREIGN KEY (parent_id) REFERENCES categories(id) )'''
 
 con = s3.connect('categories.db' , timeout=10)
 cur = con.cursor()
@@ -27,7 +26,7 @@ sql = '''insert into categories (category , parent_id) values(? , ?)'''
 
 #res = cur.execute(create_table) 
 
-#res1 = cur.executemany(sql , data)
+res1 = cur.executemany(sql , data)
 
 res3 = '''select * from categories
     where parent_id is 2'''
