@@ -31,7 +31,7 @@ def getDataFromDBMS():
         where parent_id is "null"'''
 
     res3 = '''select * from category
-        where parent_id is 1'''
+        where parent_id between 1 and 100 '''
 
     res4 = cur.execute(res2)
 
@@ -55,29 +55,38 @@ def getDataFromDBMS():
 #U.I Code
 win = tkinter.Tk()
 win.title("Category and Subcategory by M. Shariq Shafiq")
+win.configure(bg='Black')
+win.geometry("720x250")
 
-frame = tkinter.Frame(win)
-frame.pack()
+
+frame = tkinter.Frame(win , bg='Black')
+frame.pack(fill='both')
 
 #Heading
-category_info = tkinter.LabelFrame(frame , text="Category and SubCAtegory Info")
-category_info.grid(row=0 ,column=0)
+category_info = tkinter.LabelFrame(frame , text="Category and Sub-Category Info" , font=("Courier 20 bold"))
+category_info.configure(bg='Black' , fg='white')
+category_info.grid(row=0 ,column=0 )
 
 #Labels Headings 
-main_category_label = tkinter.Label(category_info, text="Enter Category Name : ")
+main_category_label = tkinter.Label(category_info, text="Enter Category Name : " , font=("Courier 15 bold"))
+main_category_label.configure(bg='Black' , fg='white')
 main_category_label.grid(row=0 , column=0)
 
-parent_id_label = tkinter.Label(category_info , text="Enter Parent id : ")
-parent_id_label.grid(row=0 , column=2)
+parent_id_label = tkinter.Label(category_info , text="Enter Parent id : " , font=("Courier 17 bold"))
+parent_id_label.configure(bg='Black' , fg='white')
+parent_id_label.grid(row=1 , column=0)
 
 #Entry Bars
 main_category_entry = tkinter.Entry(category_info)
 parent_id_entry = tkinter.Entry(category_info)
-main_category_entry.grid(row=1 , column=0)
-parent_id_entry.grid(row=1 , column=2)
+main_category_entry.grid(row=0 , column=1)
+main_category_entry.configure(bg='white' , fg='black')
+parent_id_entry.grid(row=1 , column=1)
+parent_id_entry.configure(bg='white' , fg='black')
 
 #Button Clicked to Enter Data
 button = tkinter.Button(frame , text="Click To Add Data" , command=getDataFromDBMS)
+button.configure(bg='red' , fg='black')
 button.grid(row=3 , column=2 , sticky="news" , padx=15 , pady=15)
 
 win.mainloop()
